@@ -1,9 +1,8 @@
-package s2.ip.pu.filmlix.FilmFlix.model;
+package s2.ip.pu.filmlix.model;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import s2.ip.pu.filmlix.FilmFlix.repository.RoleRepository;
-import s2.ip.pu.filmlix.FilmFlix.repository.UserRepository;
+import s2.ip.pu.filmlix.repository.RoleRepository;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -28,9 +27,9 @@ public class User {
 
     public Set<Role> getRoles() {
         Set<Role> roleSet = new HashSet<>();
-        roleSet.add(new Role(RoleRepository.USER_ROLE));
+        roleSet.add(RoleRepository.USER);
         if (login.equalsIgnoreCase("admin")) {
-            roleSet.add(new Role(RoleRepository.ADMIN_ROLE));
+            roleSet.add(RoleRepository.ADMIN);
         }
         return roleSet;
     }

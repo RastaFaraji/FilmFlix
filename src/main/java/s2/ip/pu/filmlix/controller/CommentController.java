@@ -1,9 +1,9 @@
-package s2.ip.pu.filmlix.FilmFlix.controller;
+package s2.ip.pu.filmlix.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import s2.ip.pu.filmlix.FilmFlix.model.Comment;
-import s2.ip.pu.filmlix.FilmFlix.repository.CommentRepository;
+import s2.ip.pu.filmlix.model.Comment;
+import s2.ip.pu.filmlix.repository.CommentRepository;
 
 import java.util.List;
 
