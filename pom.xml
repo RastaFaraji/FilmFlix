@@ -5,7 +5,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.2.0.RELEASE</version>
+		<version>1.5.22.RELEASE</version>
 		<relativePath/>
 	</parent>
 	<groupId>s2.ip.pu.filmlix</groupId>
@@ -15,7 +15,7 @@
 	<description>Project like integration of Netflix and IMDb</description>
 
 	<properties>
-		<java.version>13</java.version>
+		<java.version>8</java.version>
 	</properties>
 
 	<dependencies>
@@ -58,9 +58,18 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-actuator</artifactId>
-			<version>2.2.0.RELEASE</version>
+			<version>1.5.22.RELEASE</version>
 		</dependency>
-
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger2</artifactId>
+			<version>2.9.2</version>
+		</dependency>
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger-ui</artifactId>
+			<version>2.9.2</version>
+		</dependency>
 	</dependencies>
 
 	<build>

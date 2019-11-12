@@ -1,6 +1,7 @@
 package s2.ip.pu.filmlix.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import s2.ip.pu.filmlix.model.Comment;
 import s2.ip.pu.filmlix.repository.CommentRepository;
@@ -20,6 +21,7 @@ public class CommentController {
     }
 
     @PostMapping("/add")
+    @PreAuthorize("hasAnyAuthority('USER', 'ADMIN')")
     public void addNew(@RequestParam Comment comment) {
         repository.save(comment);
     }

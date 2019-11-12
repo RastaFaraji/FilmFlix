@@ -22,7 +22,7 @@ import static lombok.AccessLevel.PRIVATE;
 import static org.springframework.http.ResponseEntity.ok;
 
 @RestController
-@RequestMapping("/api/auth/")
+@RequestMapping("/user")
 @FieldDefaults(level = PRIVATE, makeFinal = true)
 @AllArgsConstructor(access = PACKAGE)
 final class UserController {
