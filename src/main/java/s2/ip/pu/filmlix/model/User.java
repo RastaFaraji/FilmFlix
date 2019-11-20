@@ -11,30 +11,31 @@ import java.util.Set;
 
 @Data
 @Entity
-public class Uzytkownicy implements Serializable {
+@Table(name = "Uzytkownicy")
+public class User implements Serializable {
 
     @Id
     @Column(name = "Id_uzytkownik", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer idUzytkownik;
+    private Integer userId;
 
     @Column(name = "Imie", nullable = false, length = 20)
-    private String imie;
+    private String name;
 
     @Column(name = "Nazwisko", nullable = false, length = 20)
-    private String nazwisko;
+    private String surname;
 
     @Column(name = "login", nullable = false, length = 20)
     private String login;
 
     @Column(name = "Haslo", nullable = false, length = 44)
-    private String haslo;
+    private String password;
 
-    @OneToMany(mappedBy = "uzytkownik", fetch = FetchType.LAZY)
-    private List<Komentarze> komentarze;
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+    private List<Comment> comment;
 
-    @OneToMany(mappedBy = "klient", fetch = FetchType.LAZY)
-    private List<Wypozyczenia> wypozyczenia;
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+    private List<Rental> rentals;
 
     @Transient
     private Set<Role> roles;

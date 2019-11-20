@@ -8,22 +8,23 @@ import java.sql.Date;
 
 @Data
 @Entity
-public class Komentarze implements Serializable {
+@Table(name = "Komentarze")
+public class Comment implements Serializable {
 
     @Id
     @Column(name = "Id_komentarz", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer idKomentarz;
+    private Integer commentId;
 
     @Column(name = "Data", nullable = false)
     private Date data;
 
     @Column(name = "Komentarz", nullable = false, length = 200)
-    private String komentarz;
+    private String comment;
 
     @ManyToOne
-    private Uzytkownicy uzytkownik;
+    private User user;
 
     @ManyToOne
-    private Filmy film;
+    private Movie movie;
 }

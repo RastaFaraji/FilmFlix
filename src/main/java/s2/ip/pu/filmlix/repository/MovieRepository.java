@@ -2,13 +2,13 @@ package s2.ip.pu.filmlix.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-import s2.ip.pu.filmlix.model.Filmy;
+import s2.ip.pu.filmlix.model.Movie;
 
 import java.util.List;
 
 @Repository
-public interface MovieRepository extends JpaRepository<Filmy, Integer> {
+public interface MovieRepository extends JpaRepository<Movie, Integer> {
 
-    List<Filmy> getAllByGatunek(String category);
+    List<Movie> getAllByGenere(String category);
 
 }

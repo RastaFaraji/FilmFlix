@@ -8,20 +8,21 @@ import java.sql.Date;
 
 @Data
 @Entity
-public class Wypozyczenia implements Serializable {
+@Table(name = "Wypozyczenia")
+public class Rental implements Serializable {
 
     @Id
     @Column(name = "Id_film")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer idFilm;
+    private Integer movieId;
 
     @ManyToOne
-    private Filmy film;
+    private Movie movie;
 
     @ManyToOne
-    private Uzytkownicy klient;
+    private User user;
 
     @Column(name = "Data_wypozyczenia", nullable = false)
-    private Date dataWypozyczenia;
+    private Date rentalDate;
 
 }
