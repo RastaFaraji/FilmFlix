@@ -8,9 +8,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.AuthenticationException;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import s2.ip.pu.filmlix.config.JwtTokenProvider;
-import s2.ip.pu.filmlix.model.User;
+import s2.ip.pu.filmlix.model.Uzytkownicy;
 import s2.ip.pu.filmlix.repository.UserRepository;
 import s2.ip.pu.filmlix.service.CustomUserDetailsService;
 
@@ -40,10 +43,10 @@ final class UserController {
     private CustomUserDetailsService userService;
 
     @PostMapping("/login")
-    public ResponseEntity<Map<Object, Object>> login(@RequestBody User user) {
+    public ResponseEntity<Map<Object, Object>> login(@RequestBody Uzytkownicy user) {
         try {
             String username = user.getLogin();
-            authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, user.getPassword()));
+            authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, user.getHaslo()));
             String token = jwtTokenProvider.createToken(username, this.userRepository.findByLogin(username).getRoles());
             Map<Object, Object> model = new HashMap<>();
             model.put("username", username);
@@ -58,8 +61,8 @@ final class UserController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity<Map<Object, Object>> register(@RequestBody User user) {
-        User userExists = userService.findUserByEmail(user.getLogin());
+    public ResponseEntity<Map<Object, Object>> register(@RequestBody Uzytkownicy user) {
+        Uzytkownicy userExists = userService.findUserByEmail(user.getLogin());
         if (userExists != null) {
             Map<Object, Object> model = new HashMap<>();
             model.put("message", "User with username: " + user.getLogin() + " already exists");
