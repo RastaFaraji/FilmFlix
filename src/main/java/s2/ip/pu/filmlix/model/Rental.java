@@ -12,9 +12,9 @@ import java.sql.Date;
 public class Rental implements Serializable {
 
     @Id
-    @Column(name = "Id_film")
+    @Column(name = "Id_wypozyczenia")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer movieId;
+    private Integer rentalId;
 
     @ManyToOne
     private Movie movie;
