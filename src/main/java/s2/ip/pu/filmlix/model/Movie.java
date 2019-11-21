@@ -1,5 +1,6 @@
 package s2.ip.pu.filmlix.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -37,9 +38,11 @@ public class Movie implements Serializable {
     private BigDecimal price;
 
     @OneToMany(mappedBy = "movie", fetch = FetchType.LAZY)
+    @JsonIgnore
     private List<Rental> rentals;
 
     @OneToMany(mappedBy = "movie", fetch = FetchType.LAZY)
+    @JsonIgnore
     private List<Comment> comments;
 
 }

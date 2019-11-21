@@ -17,7 +17,7 @@ public class MovieController {
     @Autowired
     private MovieRepository repository;
 
-    @GetMapping("/all")
+    @GetMapping("")
     public List<Movie> getAll() {
         return repository.findAll().stream().sorted(Comparator.comparing(Movie::getOriginalTitle)).collect(Collectors.toList());
     }

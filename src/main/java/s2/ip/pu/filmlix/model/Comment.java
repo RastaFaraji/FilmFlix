@@ -1,5 +1,6 @@
 package s2.ip.pu.filmlix.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -23,8 +24,12 @@ public class Comment implements Serializable {
     private String comment;
 
     @ManyToOne
+    @JsonIgnore
+    @JoinColumn(name = "Id_uzytkownik")
     private User user;
 
     @ManyToOne
+    @JsonIgnore
+    @JoinColumn(name = "Id_film")
     private Movie movie;
 }

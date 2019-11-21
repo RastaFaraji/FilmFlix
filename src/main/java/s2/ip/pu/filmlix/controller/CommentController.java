@@ -18,13 +18,13 @@ public class CommentController {
     private CommentRepository repository;
 
     @GetMapping("/{movieId}")
-    public List<Comment> getAllForMovie(@PathVariable long movieId) {
-        return repository.findAllByMovieMovieId(movieId).stream().sorted(Comparator.comparing(Comment::getData)).collect(Collectors.toList());
+    public List<Comment> getAllForMovie(@PathVariable Integer movieId) {
+        return repository.findAllByMovie_MovieId(movieId).stream().sorted(Comparator.comparing(Comment::getData)).collect(Collectors.toList());
     }
 
     @GetMapping("/user/{userId}")
-    public List<Comment> getAllForUser(@PathVariable long userId) {
-        return repository.findAllByUserUserId(userId).stream().sorted(Comparator.comparing(Comment::getData)).collect(Collectors.toList());
+    public List<Comment> getAllForUser(@PathVariable Integer userId) {
+        return repository.findAllByUser_UserId(userId).stream().sorted(Comparator.comparing(Comment::getData)).collect(Collectors.toList());
     }
 
     @PostMapping("/add")
