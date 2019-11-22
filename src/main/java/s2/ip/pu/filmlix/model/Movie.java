@@ -37,6 +37,9 @@ public class Movie implements Serializable {
     @Column(name = "Cena", nullable = false)
     private BigDecimal price;
 
+    @Column(name = "Plakat_url", length = 60)
+    private String imageUrl;
+
     @OneToMany(mappedBy = "movie", fetch = FetchType.LAZY)
     @JsonIgnore
     private List<Rental> rentals;
