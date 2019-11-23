@@ -5,18 +5,18 @@ import lombok.experimental.FieldDefaults;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.AuthenticationException;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import s2.ip.pu.filmlix.config.JwtTokenProvider;
 import s2.ip.pu.filmlix.model.User;
 import s2.ip.pu.filmlix.repository.UserRepository;
 import s2.ip.pu.filmlix.service.CustomUserDetailsService;
 
+import javax.servlet.ServletRequest;
+import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -28,7 +28,7 @@ import static org.springframework.http.ResponseEntity.ok;
 @RequestMapping("/user")
 @FieldDefaults(level = PRIVATE, makeFinal = true)
 @AllArgsConstructor(access = PACKAGE)
-final class UserController {
+class UserController {
 
     @Autowired
     AuthenticationManager authenticationManager;
@@ -72,5 +72,15 @@ final class UserController {
         Map<Object, Object> model = new HashMap<>();
         model.put("message", "User registered successfully");
         return ok(model);
+    }
+
+    @GetMapping("")
+    @PreAuthorize("hasAnyAuthority('USER', 'ADMIN')")
+    public User getUserDetails(ServletRequest req) {
+        String token = jwtTokenProvider.resolveToken(((HttpServletRequest) req));
+        String name = jwtTokenProvider.getAuthentication(token).getName();
+        User user = userRepository.findByLogin(name);
+        user.setPassword(null);
+        return user;
     }
 }
