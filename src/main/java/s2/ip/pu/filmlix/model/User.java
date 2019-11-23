@@ -19,16 +19,16 @@ public class User implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer userId;
 
-    @Column(name = "Imie", nullable = false, length = 20)
+    @Column(name = "Imie", nullable = false, length = 40)
     private String name;
 
-    @Column(name = "Nazwisko", nullable = false, length = 20)
+    @Column(name = "Nazwisko", nullable = false, length = 40)
     private String surname;
 
-    @Column(name = "login", nullable = false, length = 20)
+    @Column(name = "login", nullable = false, length = 40)
     private String login;
 
-    @Column(name = "Haslo", nullable = false, length = 44)
+    @Column(name = "Haslo", nullable = false, length = 120)
     private String password;
 
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)

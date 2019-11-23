@@ -31,14 +31,17 @@ public class Movie implements Serializable {
     @Column(name = "Aktorzy", nullable = false, length = 800)
     private String actors;
 
-    @Column(name = "Opis", nullable = false, length = 120)
+    @Column(name = "Opis", nullable = false, length = 800)
     private String description;
 
     @Column(name = "Cena", nullable = false)
     private BigDecimal price;
 
-    @Column(name = "Plakat_url", length = 60)
+    @Column(name = "Plakat_url", length = 400)
     private String imageUrl;
+
+    @Column(name = "Czas_trwania")
+    private Integer duration;
 
     @OneToMany(mappedBy = "movie", fetch = FetchType.LAZY)
     @JsonIgnore

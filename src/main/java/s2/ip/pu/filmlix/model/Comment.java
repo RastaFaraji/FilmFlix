@@ -20,7 +20,7 @@ public class Comment implements Serializable {
     @Column(name = "Data", nullable = false)
     private Date data;
 
-    @Column(name = "Komentarz", nullable = false, length = 200)
+    @Column(name = "Komentarz", nullable = false, length = 400)
     private String comment;
 
     @ManyToOne
