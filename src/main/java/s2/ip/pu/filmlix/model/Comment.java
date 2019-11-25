@@ -23,13 +23,11 @@ public class Comment implements Serializable {
     @Column(name = "Komentarz", nullable = false, length = 400)
     private String comment;
 
-    @ManyToOne
-    @JsonIgnore
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "Id_uzytkownik")
     private User user;
 
-    @ManyToOne
-    @JsonIgnore
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "Id_film")
     private Movie movie;
 }

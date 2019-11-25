@@ -17,13 +17,11 @@ public class Rental implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer rentalId;
 
-    @ManyToOne
-    @JsonIgnore
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "Id_film")
     private Movie movie;
 
-    @ManyToOne
-    @JsonIgnore
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "Id_klient")
     private User user;
 

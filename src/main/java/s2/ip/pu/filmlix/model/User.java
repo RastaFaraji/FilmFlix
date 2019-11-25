@@ -1,5 +1,6 @@
 package s2.ip.pu.filmlix.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import s2.ip.pu.filmlix.repository.RoleRepository;
 
@@ -32,9 +33,11 @@ public class User implements Serializable {
     private String password;
 
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+    @JsonIgnore
     private List<Comment> comment;
 
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+    @JsonIgnore
     private List<Rental> rentals;
 
     @Transient

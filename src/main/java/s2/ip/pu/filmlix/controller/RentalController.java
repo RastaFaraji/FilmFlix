@@ -20,9 +20,9 @@ public class RentalController {
         return repository.findAll();
     }
 
-    @PostMapping("/add")
+    @PostMapping("")
     @PreAuthorize("hasAnyAuthority('USER', 'ADMIN')")
-    public void addNew(@RequestParam Rental rental) {
+    public void addNew(@RequestBody Rental rental) {
         repository.save(rental);
     }
 }

@@ -27,14 +27,14 @@ public class CommentController {
         return repository.findAllByUser_UserId(userId).stream().sorted(Comparator.comparing(Comment::getData)).collect(Collectors.toList());
     }
 
-    @PostMapping("/add")
+    @PostMapping("")
     @PreAuthorize("hasAnyAuthority('USER', 'ADMIN')")
-    public void addNew(@RequestParam Comment comment) {
+    public void addNew(@RequestBody Comment comment) {
         repository.save(comment);
     }
 
-    @PutMapping("/edit")
-    public void edit(@RequestParam Comment comment) {
+    @PutMapping("")
+    public void edit(@RequestBody Comment comment) {
         repository.save(comment);
     }
 }
