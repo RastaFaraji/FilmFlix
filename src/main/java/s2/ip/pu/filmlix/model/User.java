@@ -1,6 +1,7 @@
 package s2.ip.pu.filmlix.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 import s2.ip.pu.filmlix.repository.RoleRepository;
 
@@ -29,7 +30,7 @@ public class User implements Serializable {
     @Column(name = "login", nullable = false, length = 40)
     private String login;
 
-    @JsonIgnore
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @Column(name = "Haslo", nullable = false, length = 120)
     private String password;
 
