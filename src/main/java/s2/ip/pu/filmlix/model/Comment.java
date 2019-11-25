@@ -23,6 +23,9 @@ public class Comment implements Serializable {
     @Column(name = "Komentarz", nullable = false, length = 400)
     private String comment;
 
+    @Column(name = "Ocena")
+    private Short rating;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "Id_uzytkownik")
     private User user;

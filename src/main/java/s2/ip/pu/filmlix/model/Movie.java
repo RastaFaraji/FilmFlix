@@ -43,6 +43,9 @@ public class Movie implements Serializable {
     @Column(name = "Czas_trwania")
     private Integer duration;
 
+    @Column(name = "Srednia_ocena")
+    private BigDecimal rating;
+
     @OneToMany(mappedBy = "movie", fetch = FetchType.LAZY)
     @JsonIgnore
     private List<Rental> rentals;
