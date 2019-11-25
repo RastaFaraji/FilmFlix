@@ -29,18 +29,20 @@ public class User implements Serializable {
     @Column(name = "login", nullable = false, length = 40)
     private String login;
 
+    @JsonIgnore
     @Column(name = "Haslo", nullable = false, length = 120)
     private String password;
 
-    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     @JsonIgnore
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     private List<Comment> comment;
 
-    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     @JsonIgnore
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     private List<Rental> rentals;
 
     @Transient
+    @JsonIgnore
     private Set<Role> roles;
 
     public Set<Role> getRoles() {

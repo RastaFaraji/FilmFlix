@@ -80,7 +80,6 @@ class UserController {
         String token = jwtTokenProvider.resolveToken(((HttpServletRequest) req));
         String name = jwtTokenProvider.getAuthentication(token).getName();
         User user = userRepository.findByLogin(name);
-        user.setPassword(null);
         return user;
     }
 }
