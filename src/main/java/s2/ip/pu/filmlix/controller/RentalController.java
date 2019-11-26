@@ -22,7 +22,7 @@ public class RentalController {
 
     @GetMapping("")
     @PreAuthorize("hasAnyAuthority('USER', 'ADMIN')")
-    public List<Rental> getAll(ServletRequest req) {
+    public List<Rental> getAllForLoggedUser(ServletRequest req) {
         String login = tokenProvider.getUserLogin(req);
         return repository.findAllByUser_Login(login);
     }
