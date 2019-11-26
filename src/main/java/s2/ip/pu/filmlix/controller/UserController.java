@@ -1,7 +1,6 @@
 package s2.ip.pu.filmlix.controller;
 
 import lombok.AllArgsConstructor;
-import lombok.experimental.FieldDefaults;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,28 +15,25 @@ import s2.ip.pu.filmlix.repository.UserRepository;
 import s2.ip.pu.filmlix.service.CustomUserDetailsService;
 
 import javax.servlet.ServletRequest;
-import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 import java.util.Map;
 
 import static lombok.AccessLevel.PACKAGE;
-import static lombok.AccessLevel.PRIVATE;
 import static org.springframework.http.ResponseEntity.ok;
 
 @RestController
 @RequestMapping("/user")
-@FieldDefaults(level = PRIVATE, makeFinal = true)
 @AllArgsConstructor(access = PACKAGE)
 class UserController {
 
     @Autowired
-    AuthenticationManager authenticationManager;
+    private AuthenticationManager authenticationManager;
 
     @Autowired
-    JwtTokenProvider jwtTokenProvider;
+    private JwtTokenProvider jwtTokenProvider;
 
     @Autowired
-    UserRepository userRepository;
+    private UserRepository userRepository;
 
     @Autowired
     private CustomUserDetailsService userService;
@@ -77,8 +73,7 @@ class UserController {
     @GetMapping("")
     @PreAuthorize("hasAnyAuthority('USER', 'ADMIN')")
     public User getUserDetails(ServletRequest req) {
-        String token = jwtTokenProvider.resolveToken(((HttpServletRequest) req));
-        String name = jwtTokenProvider.getAuthentication(token).getName();
+        String name = jwtTokenProvider.getUserLogin(req);
         User user = userRepository.findByLogin(name);
         return user;
     }

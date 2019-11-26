@@ -11,6 +11,7 @@ import s2.ip.pu.filmlix.model.Role;
 import s2.ip.pu.filmlix.service.CustomUserDetailsService;
 
 import javax.annotation.PostConstruct;
+import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
 import java.util.Base64;
 import java.util.Date;
@@ -70,5 +71,11 @@ public class JwtTokenProvider {
         } catch (JwtException | IllegalArgumentException e) {
             throw new JwtException("Expired or invalid JWT token");
         }
+    }
+
+    public String getUserLogin(ServletRequest req) {
+        String token = resolveToken(((HttpServletRequest) req));
+        String name = getAuthentication(token).getName();
+        return name;
     }
 }
