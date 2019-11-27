@@ -29,7 +29,7 @@ public class MovieController {
 
     @GetMapping("/category/{category}")
     public List<Movie> getByCategory(@PathVariable String category) {
-        return repository.getAllByGenere(category).stream().sorted(Comparator.comparing(Movie::getOriginalTitle)).collect(Collectors.toList());
+        return repository.getAllByGenereLikeOrderByOriginalTitle(category);
     }
 
     @PostMapping("/add")
