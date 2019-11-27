@@ -24,12 +24,12 @@ public class MovieController {
 
     @GetMapping("")
     public List<Movie> getAll() {
-        return repository.findAll().stream().sorted(Comparator.comparing(Movie::getOriginalTitle)).collect(Collectors.toList());
+        return repository.getAllByOrderByOriginalTitleDescRatingDesc();
     }
 
     @GetMapping("/category/{category}")
     public List<Movie> getByCategory(@PathVariable String category) {
-        return repository.getAllByGenereLikeOrderByOriginalTitle(category);
+        return repository.getAllByGenereLikeOrderByOriginalTitleDescRatingDesc(category);
     }
 
     @PostMapping("/add")

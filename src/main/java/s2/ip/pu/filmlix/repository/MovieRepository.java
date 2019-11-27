@@ -10,6 +10,7 @@ import java.util.List;
 @Repository
 public interface MovieRepository extends JpaRepository<Movie, Integer> {
 
-    List<Movie> getAllByGenereLikeOrderByOriginalTitle(String category);
+    List<Movie> getAllByOrderByOriginalTitleDescRatingDesc();
+    List<Movie> getAllByGenereLikeOrderByOriginalTitleDescRatingDesc(String category);
     List<Movie> getAllByMovieIdAndRentals_User_Login(Integer movieId, String login);
 }
