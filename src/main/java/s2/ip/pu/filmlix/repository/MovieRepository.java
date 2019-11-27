@@ -11,6 +11,6 @@ import java.util.List;
 public interface MovieRepository extends JpaRepository<Movie, Integer> {
 
     List<Movie> getAllByOrderByOriginalTitleDescRatingDesc();
-    List<Movie> getAllByGenereLikeOrderByOriginalTitleDescRatingDesc(String category);
+    List<Movie> findAllByGenereContainingOrderByOriginalTitleDescRatingDesc(String genere);
     List<Movie> getAllByMovieIdAndRentals_User_Login(Integer movieId, String login);
 }

@@ -27,7 +27,7 @@ public class MovieController {
 
     @GetMapping("/category/{category}")
     public List<Movie> getByCategory(@PathVariable String category) {
-        return repository.getAllByGenereLikeOrderByOriginalTitleDescRatingDesc(category);
+        return repository.findAllByGenereContainingOrderByOriginalTitleDescRatingDesc(category);
     }
 
     @PostMapping("/add")
